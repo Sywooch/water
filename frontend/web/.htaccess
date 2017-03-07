@@ -10,6 +10,8 @@
   # Включаем mod_rewrite
   RewriteEngine On
 
+
+
   # Если это папка или файл, открываем её/его
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
@@ -18,3 +20,5 @@
   # В противном случае перенаправляем на index.php
   RewriteRule . index.php
 </IfModule>
+
+# php_value memory_limit 512M

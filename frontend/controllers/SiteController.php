@@ -76,6 +76,16 @@ class SiteController extends Controller
     }
 
     /**
+     * Dispalay Parsing page.
+     *
+     * @return mixed
+     */
+    public function actionParser()
+    {
+        return $this->render('parser');
+    }
+
+    /**
      * Logs in a user.
      *
      * @return mixed

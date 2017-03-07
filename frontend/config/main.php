@@ -10,10 +10,18 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
+    'sourceLanguage' => 'en-US',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'cart' => [
+            'class' => 'frontend\components\Cart'
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -44,6 +52,58 @@ return [
             ],
         ],
         */
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'enableStrictParsing' => true,
+            'rules' => [
+                'category/<id:\d+>' => 'category/view',
+                [
+                    'pattern' => '',
+                    'route' => 'shop/index',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => 'about',
+                    'route' => 'site/about',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => 'contact',
+                    'route' => 'site/contact',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => 'terms-of-use',
+                    'route' => 'site/terms-of-use',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => 'products/lists/<id:\d+>',
+                    'route' => 'products/lists>',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => '<controller>/<action>/<id:\d+>',
+                    'route' => '<controller>/<action>',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => '<controller>/<action>',
+                    'route' => '<controller>/<action>',
+                    'suffix' => ''
+                ],
+            ],
+        ],
+        'cart' => [
+            'class' => 'yii2mod\cart\Cart',
+            // you can change default storage class as following:
+            'storageClass' => [
+                'class' => 'yii2mod\cart\storage\DatabaseStorage',
+                // you can also override some properties 
+                'deleteIfEmpty' => true
+            ]
+        ],
     ],
     'params' => $params,
 ];
