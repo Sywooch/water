@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
 													<?=$hit->name?>
 												</a>
 											</p>
-											<a href="<?= Url::to(['/cart/add', 'id'=>$hit->id])?>" data-id="<?=$hit->id?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<a href="<?= Url::to(['/cart/add', 'id'=>$hit->id])?>" data-id="<?=$hit->id?>" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										
 										<?php if ($hit->new): ?>
