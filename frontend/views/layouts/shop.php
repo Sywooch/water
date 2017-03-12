@@ -11,6 +11,7 @@ use frontend\assets\AppAsset;
 use frontend\assets\ltAppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
+use yii\bootstrap\Modal;
 
 AppAsset::register($this);
 ltAppAsset::register($this);
@@ -25,7 +26,7 @@ ltAppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="shortcut icon" href="/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -42,7 +43,7 @@ ltAppAsset::register($this);
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="<?= Url::to(['shop/index']) ?>"><?= Html::img(Url::to('/images/logo.png'), ['alt' => '', 'class' => ''])?></a>
+                            <a href="<?= Url::home() ?>"><?= Html::img(Url::to('/images/logo.png'), ['alt' => '', 'class' => ''])?></a>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -55,8 +56,8 @@ ltAppAsset::register($this);
                     </div>
                     <div class="col-sm-4">
                         <div class="shop-menu pull-right">
-                            <?= Html::a(Yii::t('app', 'Корзина'), ['/shop/cart'], ['class' => 'btn btn-success']) ?>
-
+                            
+                            <a href="#" onclick="getCart()">Cart</a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +78,7 @@ ltAppAsset::register($this);
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><?= Html::a(Yii::t('app', 'Главная'), ['/shop/index'], ['class' => 'active']) ?></li>
+                                <li><?= Html::a(Yii::t('app', 'Главная'), ['/category/index'], ['class' => 'active']) ?></li>
                                 <li><?= Html::a(Yii::t('app', 'О воде'), ['/shop/water'], ['class' => '']) ?></li>
                                 <li><?= Html::a(Yii::t('app', 'Сервис'), ['/shop/production'], ['class' => '']) ?></li>
                                 <li><?= Html::a(Yii::t('app', 'Доставка'), ['/shop/delivery'], ['class' => '']) ?></li>
@@ -95,7 +96,7 @@ ltAppAsset::register($this);
             </div>
         </div><!--/header-bottom-->
     </header><!--/header-->
-
+    
         <?= $content ?>
 
     <footer id="footer"><!--Footer-->
@@ -158,7 +159,21 @@ ltAppAsset::register($this);
         </div>
         
     </footer><!--/Footer-->
+<?php 
+Modal::begin([
+    'header' => '<h2>Корзина</h2>',
+    'id' => 'cart',
+    'size' => 'modal-lg',
+    'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+                 <button type="button" class="btn btn-success">Оформить заказ</button>
+                 <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>
+'
+]);
 
+echo 'Say hello...';
+
+Modal::end();
+?>
 <?php $this->endBody() ?>
 </body>
 </html>

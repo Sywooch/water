@@ -12,11 +12,9 @@ return [
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
     'sourceLanguage' => 'en-US',
+    'defaultRoute' => 'category/index',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'cart' => [
-            'class' => 'frontend\components\Cart'
-        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -31,6 +29,9 @@ return [
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
+            'class' => 'yii\web\DbSession',
+            // 'db' => 'mydb',
+            // 'sessionTable' => 'my_session',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -57,7 +58,9 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'rules' => [
+                'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
+                'product/<id:\d+>' => 'product/view',
                 [
                     'pattern' => '',
                     'route' => 'shop/index',

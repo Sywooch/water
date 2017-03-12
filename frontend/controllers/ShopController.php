@@ -4,8 +4,6 @@ namespace frontend\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use backend\models\Category;
-use backend\models\Product;
  
 class ShopController extends Controller
 {
